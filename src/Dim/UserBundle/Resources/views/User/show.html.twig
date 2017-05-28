@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-5">
+                <h1>Informations utilisateur</h1>
+                <table class="table">
+                    <tr>
+                        <td><strong>Nom : </strong></td>
+                        <td>{{ user.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prénom : </strong></td>
+                        <td>{{ user.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Identifiant : </strong></td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email : </strong></td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-1">
+            </div>
+
+        </div>
+
+    {% endspaceless %}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}

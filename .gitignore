@@ -1,0 +1,21 @@
+/web/bundles/
+/var/bootstrap.php.cache
+/var/cache/*
+/app/config/parameters.yml
+/var/logs/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+/var/phpunit.xml
+/build/
+/vendor/
+/bin/
+/composer.phar
+/nbproject/private/
+### phpstorm ###
+/.idea
+/web/upload/images
+/web/js
+/web/upload/
+/web/css/
+/web/js/

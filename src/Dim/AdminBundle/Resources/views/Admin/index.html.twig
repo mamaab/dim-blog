@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body  %}
+<h1>Admin</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Administration</h2>
+
+        </div>
+        <div class="col-md-4">
+            <h2>Article</h2>
+<p><a href="{{ path('dim_admin_create_article') }}" class="btn btn-primary">Ajouter un article</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Autres</h2>
+        </div>
+    </div>
+{%  endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}

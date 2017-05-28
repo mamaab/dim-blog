@@ -1,0 +1,3 @@
+#dim_blog_homepage:
+#    path:     /
+#    defaults: { _controller: DimBlogBundle:Default:index }

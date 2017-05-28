@@ -1,0 +1,8 @@
+parameters:
+#    parameter_name: value
+    dim.user_controller.class: Dim\UserBundle\Controller\UserController
+
+services:
+    dim.user_controller:
+        class: '%dim.user_controller.class%'
+        arguments: ['@templating', '@doctrine.orm.entity_manager']

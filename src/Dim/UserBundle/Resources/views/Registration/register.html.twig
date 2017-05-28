@@ -1,0 +1,66 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-10">
+                <form method='POST' action="{{ path('fos_user_registration_register') }}" class="fos_user_registration_register">
+
+                    <div class="form-group">
+                        {{ form_errors(form.lastname) }}
+                        <div class="col-md-2">
+                            {{ form_label(form.lastname, "Nom : ") }}
+                        </div>
+                        {{ form_widget(form.lastname, {"attr":{"class":"col-md-5"} }) }}
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        {{ form_errors(form.firstname) }}
+                        <div class="col-md-2">
+                            {{ form_label(form.firstname, "Prénom : ") }}
+                        </div>
+                        {{ form_widget(form.firstname, {"attr":{"class":"col-md-5"} }) }}
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        {{ form_errors(form.username) }}
+                        <div class="col-md-2">
+                            {{ form_label(form.username, "Identifiant : ") }}
+                        </div>
+                        {{ form_widget(form.username, {"attr":{"class":"col-md-5"} }) }}
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        {{ form_errors(form.email) }}
+                        <div class="col-md-2">
+                            {{ form_label(form.email, "Email : ") }}
+                        </div>
+                        {{ form_widget(form.email, {"attr":{"class":"col-md-5"} }) }}
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        {{ form_errors(form.plainPassword.first) }}
+                        <div class="col-md-2">
+                            {{ form_label(form.plainPassword.first, "Mot de passe : ") }}
+                        </div>
+                        {{ form_widget(form.plainPassword.first, {"attr":{"class":"col-md-5"} }) }}
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        {{ form_errors(form.plainPassword.second) }} 
+                        <div class="col-md-2">               
+                            {{ form_label(form.plainPassword.second, "Confirmation : ") }}
+                        </div>
+                        {{ form_widget(form.plainPassword.second, {"attr":{"class":"col-md-5"} }) }}
+
+                        {{ form_row(form._token) }}
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-7" type="submit" value="Envoyer" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

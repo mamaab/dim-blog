@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% spaceless %}
+        <div class='col-md-8'>
+            <a href='{{ path('fos_user_registration_register') }}' class='btn btn-primary'><i class="fa fa-plus"></i>Ajouter un utilisateur</a>
+        </div>
+        <br /><br />
+        <div class="container">
+            <h2>Utilisateurs</h2>
+
+            {% if users is defined %}
+            <div class='col-md-5'>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Identifiant</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.firstname }}</td>
+                            <td>
+                                <a title="Voir les informations de l'utilisateur" href="{{ path('dim_user_show', {"id":user.id}) }}">
+                                    {{ user.username }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    Il n'y a aucun utilisateur
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}

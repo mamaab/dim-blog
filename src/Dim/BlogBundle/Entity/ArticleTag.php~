@@ -1,0 +1,117 @@
+<?php
+
+namespace Dim\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Dim\BlogBundle\Entity\Article;
+
+/**
+ * ArticleTag
+ *
+ * @ORM\Table(name="article_tag")
+ * @ORM\Entity(repositoryClass="Dim\BlogBundle\Repository\ArticleTagRepository")
+ */
+class ArticleTag
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wording", type="string", length=40, nullable=true)
+     */
+    private $wording;
+
+    /**
+     * @var type
+     *
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="articleTags", cascade={"persist", "remove"})
+     *
+     */
+    private $articles ;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set wording
+     *
+     * @param string $wording
+     *
+     * @return ArticleTag
+     */
+    public function setWording($wording)
+    {
+        $this->wording = $wording;
+
+        return $this;
+    }
+
+    /**
+     * Get wording
+     *
+     * @return string
+     */
+    public function getWording()
+    {
+        return $this->wording;
+    }
+
+    /**
+     * Add article
+     *
+     * @param \Dim\BlogBundle\Entity\Article $article
+     *
+     * @return ArticleTag
+     */
+    public function addArticle(Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \Dim\BlogBundle\Entity\Article $article
+     */
+    public function removeArticle(Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+}

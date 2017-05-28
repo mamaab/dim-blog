@@ -1,0 +1,15 @@
+
+{#{% if articles %}#}
+    {#{% for article in articles %}#}
+        <div class="blog-main">
+            <div class="blog-post">
+                <h2 class="blog-post-title"><a href="{{ path('dim_article_show', {'id': article.id}) }}">{{ article.title }}</a></h2>
+                <p class="blog-post-meta">{{ article.createdAt|date("m/d/Y" ) }} par <a href="{{ path('dim_user_show', {"id": article.user.id}) }}">{{ article.user|capitalize }}</a></p>
+                <p>{{ article.content|truncate(200, true, '...') }}</p>
+
+            </div>
+        </div>
+    {#{%  endfor %}#}
+{#{%  else %}#}
+    {#{{ 'aucun message' }}#}
+{#{%  endif %}#}

@@ -1,0 +1,13 @@
+parameters:
+    dim.admin_controller.class: Dim\AdminBundle\Controller\AdminController
+
+services:
+    dim.admin_controller:
+        class: '%dim.admin_controller.class%'
+        arguments:
+            - '@templating'
+            - '@doctrine.orm.entity_manager'
+            - '@form.factory'
+            - '@router'
+            - '@security.token_storage'
+            - '@security.authorization_checker'

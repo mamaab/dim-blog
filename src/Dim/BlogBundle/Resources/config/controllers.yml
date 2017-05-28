@@ -1,0 +1,19 @@
+parameters:
+#    parameter_name: value
+    dim.blog_controller.class: Dim\BlogBundle\Controller\BlogController
+    dim.article_controller.class: Dim\BlogBundle\Controller\ArticleController
+
+services:
+    dim.blog_controller:
+        class: '%dim.blog_controller.class%'
+        arguments:
+            - '@templating'
+            - '@doctrine.orm.entity_manager'
+            - '@dim.article.repository'
+
+    dim.article_controller:
+        class: '%dim.article_controller.class%'
+        arguments:
+            - '@templating'
+            - '@doctrine.orm.entity_manager'
+            - '@dim.article.repository'

@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block main  %}
+
+    {% if articles %}
+        {% for article in articles %}
+            {% include "DimBlogBundle:Article:article_list_content.html.twig" with {'article': article} %}
+        {%  endfor %}
+    {%  else %}
+        {{ 'aucun message' }}
+    {%  endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}

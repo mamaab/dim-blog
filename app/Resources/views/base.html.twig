@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Blog">
+    <meta name="author" content="Massi Abdoulaye Mamadou">
+    <title>{% block title %}Dim blog{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets '@bootstrap_css' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('dim_blog') }}">Accueil</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Article<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('dim_article_list') }}">Liste article</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    {#                    <select  class="form-control"  id="category-id" >
+                                            <option value="no_cat" >Catégories</option>
+                                            {% for cat in category_service.findAllCategories() %}
+                                                <option value="{{ cat.id }}" >{{ cat.wording }}</option>
+                                            {% endfor %}
+                                        </select>#}
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Rechercher un article">
+                </div>
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrateur<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('dim_admin') }}">Accueil admin</a></li>
+                            <li><a href="{{ path('dim_user') }}">Liste des utilisateurs</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="nav navbar-nav navbar-right">
+                    <a class="navbar-brand" href="{{ path('fos_user_security_logout') }}">
+                        <span class="glyphicon glyphicon-log-out"></span> Déconnexion
+                    </a>
+                    <a  class="navbar-brand">
+                        <span class="glyphicon glyphicon-user"></span> {{ app.user.lastname }}
+                    </a>
+                </div>
+            {% else %}
+                <a class="navbar-brand navbar-right" href="{{ path('fos_user_security_login') }}">Connexion</a>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+
+</div>
+<div class="container body-container">
+    {% block body %}
+        <div class="row">
+
+            <div id="main" class="col-sm-9">
+                {% block main %}{% endblock %}
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper" class="col-sm-3">
+                {% block sidebar %}
+                    <div class="sidebar-module">
+                        <h4>CATEGORIES</h4>
+                        {#<ol class="list-unstyled">#}
+                        {#{% for cat in category_service.findAllCategories() %}#}
+                        {#<li>#}
+                        {#<a href="#">{{ cat.wording }}</a>#}
+                        {#</li>#}
+                        {#{% endfor %}#}
+                        {#</ol>#}
+                    </div>
+                    <div class="sidebar-module">
+                        <h4>ARCHIVES</h4>
+                        <ol class="list-unstyled">
+                            <li><a href="#">March 2014</a></li>
+                            <li><a href="#">February 2014</a></li>
+                            <li><a href="#">January 2014</a></li>
+                            <li><a href="#">December 2013</a></li>
+                            <li><a href="#">November 2013</a></li>
+                            <li><a href="#">October 2013</a></li>
+                            <li><a href="#">September 2013</a></li>
+                            <li><a href="#">August 2013</a></li>
+                            <li><a href="#">July 2013</a></li>
+                            <li><a href="#">June 2013</a></li>
+                            <li><a href="#">May 2013</a></li>
+                            <li><a href="#">April 2013</a></li>
+                        </ol>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</div><!-- /.container -->
+
+{% block footer %}
+    <footer class="blog-footer">
+        <hr />
+        <div class="container">
+        <nav>
+            <div class="menu-footer-menu-container">
+                <a href="#">A propos</a> <a href="#">Contact</a>
+            </div>
+            <p><a href="{{ path('dim_blog') }}">Massi Blog © 2017</a></p>
+        </nav>
+        {#<p> </p>#}
+        {#<p><a href="#">haut</a></p>#}
+        </div>
+        <hr />
+    </footer>
+{% endblock footer %}
+
+{% block javascripts %}
+    {% javascripts '@jquery' '@bootstrap_js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+</body>
+</html>

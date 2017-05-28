@@ -1,0 +1,12 @@
+imports:
+    - { resource: "@DimBlogBundle/Resources/config/services.yml" }
+    - { resource: "@DimBlogBundle/Resources/config/controllers.yml" }
+    - { resource: "@DimBlogBundle/Resources/config/repositories.yml" }
+    - { resource: "@DimAdminBundle/Resources/config/services.yml" }
+    - { resource: "@DimUserBundle/Resources/config/services.yml" }
+
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }

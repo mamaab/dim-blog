@@ -1,0 +1,52 @@
+
+
+dim_blog:
+    path:     /
+    defaults: { _controller: dim.blog_controller:indexAction }
+
+dim_article:
+    path:     /article
+    defaults: { _controller: dim.article_controller:indexAction }
+
+#dim_article_show:
+#    path:     /show
+#    defaults: { _controller: dim.article_controller:showAction }
+#    prefix: /article
+
+dim_article_list:
+    path:     /article/articles
+    defaults: { _controller: dim.article_controller:listAction }
+#    prefix: /article
+
+dim_article_show:
+    path:     /article/show/{id}
+    defaults: { _controller: dim.article_controller:showAction }
+#    prefix: /article
+    requirements:
+        id: \d*
+
+dim_user:
+    path:     /users
+    defaults: { _controller: dim.user_controller:indexAction }
+
+dim_admin:
+    path:     /admin
+    defaults: { _controller: dim.admin_controller:indexAction }
+
+dim_admin_create_article:
+    path:     /admin/create-article
+    defaults: { _controller: dim.admin_controller:createAction }
+
+
+dim_user_show:
+    path:     /user/show/{id}
+    defaults: { _controller: dim.user_controller:showAction }
+    requirements:
+        id: \d*
+
+dim_article_all:
+    path:     /allArticle
+    defaults: { _controller: dim.blog_controller:allArticleAction }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

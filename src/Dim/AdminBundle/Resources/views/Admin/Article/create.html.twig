@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+
+    <h1>Création d'un article</h1>
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_row(form.title) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.createdAt) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.updatedAt) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.content) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.display) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.categories) }}
+    </div>
+    <div class="form-group">
+        {% for category in form.categories %}
+            {{ form_row(form.category) }}
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.user) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.media) }}
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Créer un article" class="btn btn-primary" />
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}

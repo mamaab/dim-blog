@@ -1,0 +1,40 @@
+{% extends "DimUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% spaceless %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class='container'>
+        {#<div class="login_form">#}
+            <form  class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                <div class="row form-group">                       
+                    <label for="username" class="control-label">{{ 'security.login.username'|trans }}</label>
+                    <br />
+                    <input class="col-xs-5" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />                        
+                </div>
+
+                <div class="row form-group">                       
+                    <label for="password" class="control-label">{{ 'security.login.password'|trans }}</label>
+                    <br />
+                    <input class="col-xs-5" type="password" id="password" name="_password" required="required" />                      
+                </div> 
+
+                <div class="row form-group">                        
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />&nbsp;
+                    <label for="remember_me" class="control-label">{{ 'security.login.remember_me'|trans }}</label>                        
+                </div>
+
+                <div class="row form-group">                        
+                    <input class="col-xs-5 btn btn-primary" type="submit" id="_submit" name="_submit"  value="{{ 'security.login.submit'|trans }}" >                        
+                </div>
+            </form>
+        </div>
+    {#</div>#}
+    {% endspaceless %}
+{% endblock fos_user_content %}

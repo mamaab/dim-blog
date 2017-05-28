@@ -1,0 +1,15 @@
+parameters:
+#    parameter_name: value
+#    dim.category_service.class: Dim\BlogBundle\Service\CategoryService
+    dim.article.form_type_service.class: Dim\BlogBundle\Form\ArticleType
+
+services:
+#    dim.category_service:
+#        class: '%dim.category_service.class%'
+#        arguments:    ['@doctrine.orm.entity_manager']
+
+    dim.article.form_type_service:
+        class: '%dim.article.form_type_service.class%'
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }

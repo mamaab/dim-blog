@@ -1,0 +1,12 @@
+parameters:
+#    parameter_name: value
+    dim.article.repository.class: Dim\BlogBundle\Repository\ArticleRepository
+
+services:
+
+    dim.article.repository:
+        class: '%dim.article.repository.class%'
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+#        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments: ["@doctrine.orm.entity_manager", Dim\BlogBundle\Entity\Article]

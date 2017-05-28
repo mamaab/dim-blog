@@ -1,0 +1,48 @@
+<?php
+
+namespace Dim\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Dim\BlogBundle\Entity\Article;
+
+/**
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="Dim\BlogBundle\Repository\CategoryRepository")
+ */
+class Category
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wording", type="string", length=40, nullable=true)
+     */
+    private $wording;
+
+    /**
+     * Many Categories have Many Articles.
+     * @ORM\ManyToMany(targetEntity="Dim\BlogBundle\Entity\Article", mappedBy="categories")
+     */
+    private $articles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+
+}
