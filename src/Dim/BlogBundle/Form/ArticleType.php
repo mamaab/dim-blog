@@ -44,6 +44,7 @@ class ArticleType extends AbstractType
                 'placeholder' => 'Catégorie',
                 'choice_label' => 'wording',
                 'multiple' => true,
+                'required' => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('user', EntityType::class, [
